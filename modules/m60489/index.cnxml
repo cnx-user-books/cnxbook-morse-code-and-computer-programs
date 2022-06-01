@@ -1,0 +1,3648 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Morse1010 Translating Text to Morse Code</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m60489</md:content-id>
+  <md:title>Morse1010 Translating Text to Morse Code</md:title>
+  <md:abstract>Learn how to translate text to Morse code using Java Platform Standard Edition and no special sound libraries.</md:abstract>
+  <md:uuid>333e7deb-ece2-4843-b59d-f99a2bd45cd3</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+<para id="p1000">
+Revised: Fri Apr 29 19:29:20 CDT 2016
+
+</para>
+
+
+
+
+<para id="p1001">
+<emphasis id="em1000" effect="italics">
+This page is part of a Book titled 
+
+
+<link id="a1000" url="http://cnx.org/contents/zWWYKvGC">
+
+Morse Code and Computer Programs
+
+</link>
+
+.
+
+</emphasis>
+</para>
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+
+
+
+<emphasis id="TableOfContents" effect="bold">
+
+
+
+
+</emphasis>
+
+Table of contents
+
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+
+
+<item id="li1000">
+
+
+
+<link id="a1001" target-id="TableOfContents">
+
+Table of contents 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1001">
+
+
+
+<link id="a1002" target-id="Preface">
+
+Preface 
+
+
+</link>
+
+
+
+
+<list id="ul1001" list-type="bulleted">
+
+
+
+<item id="li1002">
+
+
+
+<link id="a1003" target-id="ViewingTip">
+
+Viewing tip 
+
+
+</link>
+
+
+
+
+<list id="ul1002" list-type="bulleted">
+
+
+
+<item id="li1003">
+
+
+
+<link id="a1004" target-id="Figures">
+
+Figures 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1004">
+
+
+
+<link id="a1005" target-id="Listings">
+
+Listings 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1005">
+
+
+
+<link id="a1006" target-id="GeneralBackgroundInformation">
+
+General background information 
+
+
+</link>
+
+
+
+
+<list id="ul1003" list-type="bulleted">
+
+
+
+<item id="li1006">
+
+
+
+<link id="a1007" target-id="HistoricalInformation">
+
+Historical perspective 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1007">
+
+
+
+<link id="a1008" target-id="Sounds">
+
+Sounds 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1008">
+
+
+
+<link id="a1009" target-id="UsingPreviouslyPublishedCode">
+
+Using previously published code 
+
+
+</link>
+
+
+
+
+<list id="ul1004" list-type="bulleted">
+
+
+
+<item id="li1009">
+
+
+
+<link id="a1010" target-id="HowDoesItSound">
+
+How does it sound? 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1010">
+
+
+
+<link id="a1011" target-id="DiscussionAndSampleCode">
+
+Discussion and sample code 
+
+
+</link>
+
+
+
+
+<list id="ul1005" list-type="bulleted">
+
+
+
+<item id="li1011">
+
+
+
+<link id="a1012" target-id="BeginningOfTheProgram">
+
+Beginning of the program 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1012">
+
+
+
+<link id="a1013" target-id="CreateHashtable">
+
+Create a hashtable 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1013">
+
+
+
+<link id="a1014" target-id="BeginProcessingTheInputDataStream">
+
+Begin processing the input data stream 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1014">
+
+
+
+<link id="a1015" target-id="GetTheMorseCodeForTheCharacter">
+
+Get the Morse code for the character 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1015">
+
+
+
+<link id="a1016" target-id="TheOutputForHELLOWORLD">
+
+The output for HELLO WORLD 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1016">
+
+
+
+<link id="a1017" target-id="DisplayTheCharacterAndTheCode">
+
+Display the character and the code 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1017">
+
+
+
+<link id="a1018" target-id="ConvertTheMorseCodeToMusicalNotes">
+
+Convert the Morse code to musical notes 
+
+
+</link>
+
+
+
+
+<list id="ul1006" list-type="bulleted">
+
+
+
+<item id="li1018">
+
+
+
+<link id="a1019" target-id="InterpretationOfTheProgrammingCode">
+
+Interpretation of the programming code 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1019">
+
+
+
+<link id="a1020" target-id="OneUnitOfTime">
+
+One unit of time 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1020">
+
+
+
+<link id="a1021" target-id="MorseCodeSpeed">
+
+Morse code speed 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1021">
+
+
+
+<link id="a1022" target-id="ChangingTheCodeSpeed">
+
+Changing the code speed 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1022">
+
+
+
+<link id="a1023" target-id="InsertSilenceBetweenCharacters">
+
+Insert silence between characters 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1023">
+
+
+
+<link id="a1024" target-id="WritingTheOutputFile">
+
+Writing the output file 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1024">
+
+
+
+<link id="a1025" target-id="ReadingTheInputFile">
+
+Reading the input file 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1025">
+
+
+
+<link id="a1026" target-id="RunTheProgram">
+
+Run the program 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1026">
+
+
+
+<link id="a1027" target-id="CompleteProgramListing">
+
+Complete program listing 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+<item id="li1027">
+
+
+
+<link id="a1028" target-id="Miscellaneous">
+
+Miscellaneous 
+
+
+</link>
+
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</section>
+<section id="h11001">
+<title>
+
+
+
+<emphasis id="Preface" effect="bold">
+
+
+
+
+</emphasis>
+
+Preface
+
+
+</title>
+
+
+
+
+<para id="p1002">
+As I mentioned in an 
+
+
+<link id="a1029" url="http://cnx.org/contents/zWWYKvGC">
+
+earlier module
+
+
+</link>
+
+, a few weeks ago, I was asked to assist a grandchild who was working on a science project involving Morse code. I went online and searched for a stand-alone program that could translate text into Morse code. I found a few good online websites, such as the 
+
+
+<link id="a1030" url="http://morsecode.scphillips.com/translator.html">
+
+Morse Code Translator
+
+
+</link>
+
+. However, I was unable to find a good stand-alone program that could be used to translate text into Morse code independently of an Internet connection. Therefore, I decided to write my own program. This module describes my first effort in that regard. 
+
+
+</para>
+
+
+
+
+
+<para id="p1003">
+This document was created using 
+
+
+<link id="a1031" url="http://cnx.org/contents/sbe4y4Pz:15d17mtn">
+
+Apache OpenOffice Writer
+
+
+</link>
+
+ and then translated to CNXML suitable for uploading and publishing on OpenStax.
+
+
+</para>
+
+
+
+
+
+<section id="h21000">
+<title>
+
+
+
+<emphasis id="ViewingTip" effect="bold">
+
+
+
+
+</emphasis>
+
+Viewing tip
+
+
+</title>
+
+
+
+
+<para id="p1004">
+I recommend that you open another copy of this module in a separate browser window and use the following links to easily find and view the Figures and Listings while you are reading about them.
+
+
+</para>
+
+
+
+
+
+<section id="h31000">
+<title>
+
+
+
+<emphasis id="Figures" effect="bold">
+
+
+
+
+</emphasis>
+
+Figures
+
+
+</title>
+
+
+
+
+<list id="ul1007" list-type="bulleted">
+
+
+
+<item id="li1028">
+<link id="a1032" target-id="Figure_1">
+
+ Figure 1
+
+</link>
+
+. The output for HELLO WORLD. 
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</section>
+<section id="h31001">
+<title>
+
+
+
+<emphasis id="Listings" effect="bold">
+
+
+
+
+</emphasis>
+
+Listings
+
+
+</title>
+
+
+
+
+<list id="ul1008" list-type="bulleted">
+
+
+
+<item id="li1029">
+<link id="a1033" target-id="Listing_1">
+
+ Listing 1
+
+</link>
+
+. Beginning of the program. 
+
+
+</item>
+
+
+
+
+<item id="li1030">
+<link id="a1034" target-id="Listing_2">
+
+ Listing 2
+
+</link>
+
+. Create a hashtable. 
+
+
+</item>
+
+
+
+
+<item id="li1031">
+<link id="a1035" target-id="Listing_3">
+
+ Listing 3
+
+</link>
+
+. Begin processing the input data stream. 
+
+
+</item>
+
+
+
+
+<item id="li1032">
+<link id="a1036" target-id="Listing_4">
+
+ Listing 4
+
+</link>
+
+. Get the Morse code for the character. 
+
+
+</item>
+
+
+
+
+<item id="li1033">
+<link id="a1037" target-id="Listing_5">
+
+ Listing 5
+
+</link>
+
+. Display the character and the code. 
+
+
+</item>
+
+
+
+
+<item id="li1034">
+<link id="a1038" target-id="Listing_6">
+
+ Listing 6
+
+</link>
+
+. Convert the Morse code to musical notes. 
+
+
+</item>
+
+
+
+
+<item id="li1035">
+<link id="a1039" target-id="Listing_7">
+
+ Listing 7
+
+</link>
+
+. Insert silence between characters. 
+
+
+</item>
+
+
+
+
+<item id="li1036">
+<link id="a1040" target-id="Listing_8">
+
+ Listing 8
+
+</link>
+
+. Writing the output file. 
+
+
+</item>
+
+
+
+
+<item id="li1037">
+<link id="a1041" target-id="Listing_9">
+
+ Listing 9
+
+</link>
+
+. The program named MorseCodeGenerator01 
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+
+
+
+<emphasis id="GeneralBackgroundInformation" effect="bold">
+
+
+
+
+</emphasis>
+
+General background information
+
+
+</title>
+
+
+
+
+<para id="p1005">
+As I also mentioned in the 
+
+
+<link id="a1042" url="http://cnx.org/contents/zWWYKvGC">
+
+earlier module
+
+
+</link>
+
+, I was once a radio operator with the U.S. Air Force, mainly using International Morse code. Therefore, Morse code is a topic that I know something about.
+
+
+</para>
+
+
+
+
+
+<section id="h21001">
+<title>
+
+
+
+<emphasis id="HistoricalPerspective" effect="bold">
+
+
+
+
+</emphasis>
+
+
+
+
+<emphasis id="HistoricalInformation" effect="bold">
+
+
+
+
+</emphasis>
+
+Historical perspective
+
+
+</title>
+
+
+
+
+<para id="p1006">
+Before getting into the programming details, however, I will provide some historical perspectives on Morse code. According to 
+
+
+<link id="a1043" url="https://en.wikipedia.org/wiki/Morse_code">
+
+Wikipedia
+
+
+</link>
+
+, 
+
+
+<emphasis id="em1001" effect="italics">
+"Morse code is a method of transmitting text information as a series of on-off tones, lights, or clicks that can be directly understood by a skilled listener or observer without special equipment."
+
+
+</emphasis>
+
+
+
+</para>
+
+
+
+
+
+<para id="p1007">
+The "code" was invented by Samuel F. B. Morse around 1836 to describe the characters used in the U.S. telegraph system at the time. The code was later expanded by others to include additional characters.
+
+
+</para>
+
+
+
+
+
+<para id="p1008">
+Most people think of the code in terms of dots and dashes. The 
+
+
+<link id="a1044" url="https://en.wikipedia.org/wiki/Morse_code">
+
+Wikipedia
+
+
+</link>
+
+ reference given above contains an image showing the dots and dashes representing what has come to be known as International Morse Code. 
+
+
+<emphasis id="em1002" effect="italics">
+(Note that there are no lower-case letters in the code.)
+
+
+</emphasis>
+ Although an expanded version of the code includes other characters such as punctuation marks, the program that I will present in this module will deal only with letters, numbers, and the space character.
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h21002">
+<title>
+
+
+
+<emphasis id="Sounds" effect="bold">
+
+
+
+
+</emphasis>
+
+Sounds
+
+
+</title>
+
+
+
+
+<para id="p1009">
+Because of the equipment that was used, the early telegraphers thought of the code in terms of clicks where a dot was represented by two closely spaced clicks and a dash was represented by two clicks spread further apart in time. You may have seen this in movies about the late 1800's.
+
+
+</para>
+
+
+
+
+
+<para id="p1010">
+A sailor in the U.S. Navy whose job was and possibly still is to use flashing lights for line-of-sight communication between ships at sea may think of the code in terms of the lengths in time of the flashes. A short flash represents a dot and a longer flash represents a dash. You have probably seen that portrayed in movies about the navy.
+
+
+</para>
+
+
+
+
+
+<para id="p1011">
+A radio operator like myself thinks of the code in terms of truncated tones. A dot sounds something like dit and a dash sounds 
+
+
+<emphasis id="somethingLikeDah" effect="bold">
+
+
+
+
+</emphasis>
+
+something like dah. Click 
+
+
+<link id="a1045" url="HelloWorld.au">
+
+here
+
+
+</link>
+
+ to 
+
+
+<emphasis id="downloadAndPlay" effect="bold">
+
+
+
+
+</emphasis>
+
+download and play an audio file containing the Morse code for the text HELLO WORLD. 
+
+
+<emphasis id="em1003" effect="italics">
+(Did it sound like dits and dahs to you?)
+
+
+</emphasis>
+
+
+
+</para>
+
+
+
+
+
+<para id="p1012">
+
+
+
+<emphasis id="em1004" effect="italics">
+In the communication facility where I worked, we always used a typewriter to type out the message that we were hearing through the headphones. An experienced operator didn't even think of dits and dahs. Instead, the sounds seemed to go straight from the ears to the fingers pressing the typewriter keys without any thought being given to what was being heard.
+
+
+</emphasis>
+
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h21003">
+<title>
+
+
+
+<emphasis id="UsingPreviouslyPublishedCode" effect="bold">
+
+
+
+
+</emphasis>
+
+Using previously published code
+
+
+</title>
+
+
+
+
+<para id="p1013">
+Sometime back, I published a module titled 
+
+
+<link id="a1046" url="http://cnx.org/contents/27YG7QNc:2Qg_6aDU">
+
+Jbs2060-A Player Piano Simulator
+
+
+</link>
+
+. 
+
+
+</para>
+
+
+
+
+
+<note id="note1000" type="">
+
+
+
+
+
+<para id="p1014">
+If you haven't read that module, I recommend that you read it 
+
+
+<emphasis id="em1005" effect="italics">
+for context
+
+
+</emphasis>
+ before trying to understand the programming code that I will present later in this module. Note however that the programming code in this module is much less complex than the programming code in the earlier module. You won't need to understand the code in that module in order to understand the code in this module.
+
+
+</para>
+
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<para id="p1015">
+In brief, the program named 
+
+
+<emphasis id="strong1000" effect="bold">
+MusicComposer09
+
+
+</emphasis>
+ that I described in that module allows you to define a text file that represents a melody to be played by the player piano program. 
+
+
+<emphasis id="em1006" effect="italics">
+(For brevity, I will refer to the player piano program as the PPP in this module.)
+
+
+</emphasis>
+ When the program named 
+
+
+<emphasis id="strong1001" effect="bold">
+MusicComposer09 
+
+
+</emphasis>
+reads the text file, it plays the melody through the speakers connected to the computer.
+
+
+</para>
+
+
+
+
+
+<para id="p1016">
+The approach that I took for the program named M
+
+
+<emphasis id="strong1002" effect="bold">
+orseCodeGenerator01
+
+
+</emphasis>
+ in this module was straightforward. The program defines a short melody representing the Morse code sounds for each of the numbers from 0 through 9 and each of the letters from A through Z. Then it reads a text file containing a message. For each character in the message, the program sends the appropriate melody to an output file concatenating it onto the melodies for each of the previous characters. The result is an output file which, when played by 
+
+
+<emphasis id="strong1003" effect="bold">
+MusicComposer09
+
+
+</emphasis>
+ produces the Morse code sounds representing the stream of characters in the message. Optionally, those sounds are also recorded in an audio file for playback later.
+
+
+</para>
+
+
+
+
+
+<para id="p1017">
+Note that no modifications were made to the program named 
+
+
+<emphasis id="strong1004" effect="bold">
+MusicComposer09
+
+
+</emphasis>
+. As far as that program is concerned, the file produced by M
+
+
+<emphasis id="strong1005" effect="bold">
+orseCodeGenerator01
+
+
+</emphasis>
+ is just another melody similar to 
+
+
+<emphasis id="em1007" effect="italics">
+Greensleeves
+
+
+</emphasis>
+ and 
+
+
+<emphasis id="em1008" effect="italics">
+Mary Had a Little Lamb
+
+
+</emphasis>
+, although perhaps not as familiar.
+
+
+</para>
+
+
+
+
+
+<section id="h31002">
+<title>
+
+
+
+<emphasis id="HowDoesItSound" effect="bold">
+
+
+
+
+</emphasis>
+
+How does it sound?
+
+
+</title>
+
+
+
+
+<para id="p1018">
+To be honest, when I started down this path, I had no idea how the sound of the Morse code melodies produced by this program would compare with the sounds of Morse code created using more conventional techniques such as a key, an oscillator, a radio receiver, etc. However, I am very pleased with the results. The Morse code created using this approach is much cleaner than typical Morse code generated by a human operator using a hand key such as the one shown and identified as a straight key in the article titled 
+
+
+<link id="a1047" url="https://en.wikipedia.org/wiki/Telegraph_key">
+
+Telegraph key
+
+
+</link>
+
+. By the way, this is the same key that I used in the U.S. Air Force.
+
+
+</para>
+
+
+
+
+
+</section>
+</section>
+</section>
+<section id="h11003">
+<title>
+
+
+
+<emphasis id="DiscussionAndSampleCode" effect="bold">
+
+
+
+
+</emphasis>
+
+Discussion and sample code
+
+
+</title>
+
+
+
+
+<para id="p1019">
+A complete listing of the program is provided in 
+
+<link id="a1048" target-id="Listing_9">
+
+ Listing 9
+
+</link>
+
+ near the end of the lesson. I will break the program down and explain it in fragments.
+
+
+</para>
+
+
+
+
+
+<section id="h21004">
+<title>
+
+
+
+<emphasis id="BeginningOfTheProgram" effect="bold">
+
+
+
+
+</emphasis>
+
+Beginning of the program
+
+
+</title>
+
+
+
+
+<para id="p1020">
+The program begins in 
+
+<link id="a1049" target-id="Listing_1">
+
+ Listing 1
+
+</link>
+
+.
+
+
+</para>
+
+
+
+
+
+<note id="note1001" type="">
+
+
+
+
+
+<para id="p1021">
+
+
+
+<emphasis id="Listing_1" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 1. Beginning of the program.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1000" display="block">
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.util.*;
+
+public class MorseCodeGenerator01{
+  public static void main(String[] args){
+    run(args[0]);
+  }//end main
+
+  static void run(String inputFile){
+    //Read the input data
+    String data = readInputFile(inputFile);
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<para id="p1022">
+The code in 
+
+<link id="a1050" target-id="Listing_1">
+
+ Listing 1
+
+</link>
+
+, which shows the 
+
+
+<emphasis id="strong1006" effect="bold">
+main
+
+
+</emphasis>
+ method and the beginning of the 
+
+
+<emphasis id="strong1007" effect="bold">
+run
+
+
+</emphasis>
+ method is routine and should not require an explanation.
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h21005">
+<title>
+
+
+
+<emphasis id="CreateHashtable" effect="bold">
+
+
+
+
+</emphasis>
+
+Create a hashtable
+
+
+</title>
+
+
+
+
+<para id="p1023">
+The run method is continued in 
+
+<link id="a1051" target-id="Listing_2">
+
+ Listing 2
+
+</link>
+
+. The code in 
+
+<link id="a1052" target-id="Listing_2">
+
+ Listing 2
+
+</link>
+
+ is much more interesting than 
+
+<link id="a1053" target-id="Listing_1">
+
+ Listing 1
+
+</link>
+
+. 
+
+<link id="a1054" target-id="Listing_2">
+
+ Listing 2
+
+</link>
+
+ creates a 
+
+
+<emphasis id="strong1008" effect="bold">
+Hashtable
+
+
+</emphasis>
+ object and populates its keys with a space character, the letters of the alphabet, the numbers from 1 through 0, and "error".
+
+
+</para>
+
+
+
+
+
+<note id="note1002" type="">
+
+
+
+
+
+<para id="p1024">
+
+
+
+<emphasis id="Listing_2" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 2. Create a hashtable.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1001" display="block">
+    //Create a hash table containing the codes
+    // for letters, numbers, the space character,
+    // and an error character.
+    Hashtable &lt;String,String&gt;codes =
+                  new Hashtable&lt;String,String&gt;();
+
+    codes.put(" ","x");//space character
+    codes.put("A","._");
+    codes.put("B","_...");
+    codes.put("C","_._.");
+    codes.put("D","_..");
+    codes.put("E",".");
+    codes.put("F",".._.");
+    codes.put("G","__.");
+    codes.put("H","....");
+    codes.put("I","..");
+    codes.put("J",".___");
+    codes.put("K","_._");
+    codes.put("L","._..");
+    codes.put("M","__");
+    codes.put("N","_.");
+    codes.put("O","___");
+    codes.put("P",".__.");
+    codes.put("Q","__._");
+    codes.put("R","._.");
+    codes.put("S","...");
+    codes.put("T","_");
+    codes.put("U",".._");
+    codes.put("V","..._");
+    codes.put("W",".__");
+    codes.put("X","_.._");
+    codes.put("Y","_.__");
+    codes.put("Z","__..");
+    codes.put("1",".____");
+    codes.put("2","..___");
+    codes.put("3","...__");
+    codes.put("4","...._");
+    codes.put("5",".....");
+    codes.put("6","_....");
+    codes.put("7","__...");
+    codes.put("8","___..");
+    codes.put("9","____.");
+    codes.put("0","_____");
+    codes.put("error","........");
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<para id="p1025">
+With one exception, the hashtable is populated with Morse code values corresponding to the keys. The exception is the value for the key representing the space character. As far as I know, there is no Morse code value for a space character. In Morse code, a space is simply a short period of silence. Therefore, in this program, the value for the space character is "x". This will be interpreted later to indicate that there should be a short period of silence in the output corresponding to each space character in the message.
+
+
+</para>
+
+
+
+
+
+<para id="p1026">
+The values for the letters and the numbers are populated with combinations of periods and underscore characters that represent the typical dot-dash patterns for the Morse code for each character. I could have used any two characters for this purpose but the use of dots and dashes made it look more conventional and also made it easier for me to visually check and confirm the accuracy. These combinations of dots and dashes will be used later to create a series of musical notes for each character. All of the musical notes will have the same pitch or frequency 
+
+
+<emphasis id="em1009" effect="italics">
+(middle C)
+
+
+</emphasis>
+ but will have different lengths in time -- eighth notes, quarter notes, half notes, whole notes, etc. in musical terminology.
+
+
+</para>
+
+
+
+
+
+<para id="p1027">
+Finally, the value for the key "error" is populated with eight dots, which is the standard Morse code sound for an error.
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h21006">
+<title>
+
+
+
+<emphasis id="BeginProcessingTheInputDataStream" effect="bold">
+
+
+
+
+</emphasis>
+
+Begin processing the input data stream
+
+
+</title>
+
+
+
+
+<para id="p1028">
+The code in 
+
+<link id="a1055" target-id="Listing_3">
+
+ Listing 3
+
+</link>
+
+ shows the beginning of a 
+
+
+<emphasis id="strong1009" effect="bold">
+for
+
+
+</emphasis>
+ loop that is used to get and process each character from the input message one character at a time. If a character is a 
+
+
+<emphasis id="strong1010" effect="bold">
+newline
+
+
+</emphasis>
+ character it is skipped. Otherwise, the character is extracted from the input data stream, converted to upper case if needed, and stored in the variable named 
+
+
+<emphasis id="strong1011" effect="bold">
+ch
+
+
+</emphasis>
+.
+
+
+</para>
+
+
+
+
+
+<note id="note1003" type="">
+
+
+
+
+
+<para id="p1029">
+
+
+
+<emphasis id="Listing_3" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 3. Begin processing the input data stream.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1002" display="block">
+    String ch = "";
+    String code = "";
+    String sound = "";
+    for(int cnt = 0;cnt &lt; data.length();cnt++){
+
+      //Ignore newline characters.
+      if(!(("" + data.charAt(cnt)).equals(
+                                         "\n"))){
+        //Convert all input characters to upper
+        // case.
+        ch = ("" + data.charAt(cnt)).
+                                   toUpperCase();
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+<section id="h21007">
+<title>
+
+
+
+<emphasis id="GetTheMorseCodeForTheCharacter" effect="bold">
+
+
+
+
+</emphasis>
+
+Get the Morse code for the character
+
+
+</title>
+
+
+
+
+<para id="p1030">
+The code in 
+
+<link id="a1056" target-id="Listing_4">
+
+ Listing 4
+
+</link>
+
+ begins by calling the 
+
+
+<emphasis id="strong1012" effect="bold">
+get
+
+
+</emphasis>
+ method on the hashtable to get the Morse code for the character passed as a key to the method. If there is no key matching the character, the 
+
+
+<emphasis id="strong1013" effect="bold">
+get
+
+
+</emphasis>
+ method returns null. In this case, the Morse code for an error is used to represent the character. This would happen, for example if the message contained a semicolon, which is not a key in the hashtable.
+
+
+</para>
+
+
+
+
+
+<note id="note1004" type="">
+
+
+
+
+
+<para id="p1031">
+
+
+
+<emphasis id="Listing_4" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 4. Get the Morse code for the character.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1003" display="block">
+        //Get the code for the input character
+        code = codes.get(ch);
+
+        //If the input character is not in the
+        // hashtable, transmit an error.
+        if(code == null){
+          code = codes.get("error");
+        }//end if
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+<section id="h21008">
+<title>
+
+
+
+<emphasis id="TheOutputForHELLOWORLD" effect="bold">
+
+
+
+
+</emphasis>
+
+The output for HELLO WORLD
+
+
+</title>
+
+
+
+
+<para id="p1032">
+<link id="a1057" target-id="Figure_1">
+
+ Figure 1
+
+</link>
+
+ shows the output melody file for the message HELLO WORLD. I will discuss the various parts of the contents of that file in the sections that follow.
+
+
+</para>
+
+
+
+
+
+<note id="note1005" type="">
+
+
+
+
+
+<para id="p1033">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+
+
+
+</emphasis>
+
+Figure 1. The output for HELLO WORLD.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1004" display="block">
+// x
+3,X
+3,X
+//H ....
+1,C4
+1,C4
+1,C4
+1,C4
+3,X
+//E .
+1,C4
+3,X
+//L ._..
+1,C4
+3,C4
+1,C4
+1,C4
+3,X
+//L ._..
+1,C4
+3,C4
+1,C4
+1,C4
+3,X
+//O ___
+3,C4
+3,C4
+3,C4
+3,X
+// x
+3,X
+3,X
+//W .__
+1,C4
+3,C4
+3,C4
+3,X
+//O ___
+3,C4
+3,C4
+3,C4
+3,X
+//R ._.
+1,C4
+3,C4
+1,C4
+3,X
+//L ._..
+1,C4
+3,C4
+1,C4
+1,C4
+3,X
+//D _..
+3,C4
+1,C4
+1,C4
+3,X
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+<section id="h21009">
+<title>
+
+
+
+<emphasis id="DisplayTheCharacterAndTheCode" effect="bold">
+
+
+
+
+</emphasis>
+
+Display the character and the code
+
+
+</title>
+
+
+
+
+<para id="p1034">
+The program code in 
+
+<link id="a1058" target-id="Listing_5">
+
+ Listing 5
+
+</link>
+
+ displays the character and the code in the output file as shown by the first and fourth lines in 
+
+<link id="a1059" target-id="Figure_1">
+
+ Figure 1
+
+</link>
+
+. A pair of forward slash characters (//) in the output file signifies a comment, which is ignored by the PPP that plays the melody. An x in the output file, as shown in 
+
+<link id="a1060" target-id="Figure_1">
+
+ Figure 1
+
+</link>
+
+ and repeated below indicates a space in the input text stream.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1005" display="block">// x
+</code>
+
+
+
+
+<para id="p1035">
+The following line from the output shown in 
+
+<link id="a1061" target-id="Figure_1">
+
+ Figure 1
+
+</link>
+
+ signifies the letter H as the first character in the word HELLO. 
+
+
+<emphasis id="em1010" effect="italics">
+(The Morse code for the letter "H" is four dots.)
+
+
+</emphasis>
+
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1006" display="block">//H ....
+</code>
+
+
+
+
+<para id="p1036">
+Compare this with the line in 
+
+<link id="a1062" target-id="Listing_2">
+
+ Listing 2
+
+</link>
+
+ that shows the key and the value for the key equal to "H".
+
+
+</para>
+
+
+
+
+
+<para id="p1037">
+This code could be eliminated with no detrimental impact on the overall performance of the program. It is simply icing on the cake.
+
+
+</para>
+
+
+
+
+
+<note id="note1006" type="">
+
+
+
+
+
+<para id="p1038">
+
+
+
+<emphasis id="Listing_5" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 5. Display the character and the code.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1007" display="block">
+        System.out.println("//" + ch + " " +
+                                           code);
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+<section id="h21010">
+<title>
+
+
+
+<emphasis id="ConvertTheMorseCodeToMusicalNotes" effect="bold">
+
+
+
+
+</emphasis>
+
+Convert the Morse code to musical notes
+
+
+</title>
+
+
+
+
+<para id="p1039">
+The code in 
+
+<link id="a1063" target-id="Listing_6">
+
+ Listing 6
+
+</link>
+
+ converts the Morse code for the selected character to a sequence of musical notes. Those notes represent the sound of Morse code for the selected character when the file is played using the PPP.
+
+
+</para>
+
+
+
+
+
+<note id="note1007" type="">
+
+
+
+
+
+<para id="p1040">
+
+
+
+<emphasis id="Listing_6" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 6. Convert the Morse code to musical notes.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1008" display="block">
+        for(int ctr = 0; ctr &lt; code.length();
+                                          ctr++){
+          sound = "" + code.charAt(ctr);
+          if(sound.equals(".")){
+            System.out.println("1,C4");
+          }else if(sound.equals("_")){
+            System.out.println("3,C4");
+          }else if(sound.equals("x")){
+            System.out.println("3,X");
+          }//end else if
+        }//end for loop
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h31003">
+<title>
+
+
+
+<emphasis id="InterpretationOfTheProgrammingCode" effect="bold">
+
+
+
+
+</emphasis>
+
+Interpretation of the programming code
+
+
+</title>
+
+
+
+
+<para id="p1041">
+This is where some knowledge of the contents of the module titled 
+
+
+<link id="a1064" url="http://cnx.org/contents/27YG7QNc:2Qg_6aDU">
+
+Jbs2060-A Player Piano Simulator
+
+
+</link>
+
+ would come in handy. According to 
+
+
+<link id="a1065" url="http://morsecode.scphillips.com/morse.html">
+
+International Morse Code
+
+
+</link>
+
+, 
+
+
+</para>
+
+
+
+
+
+<note id="note1008" type="">
+
+
+
+
+
+<para id="p1042">
+"If the duration of a dot is taken to be one unit then that of a dash is three units. The space between the components of one character is one unit, between characters is three units and between words seven units. To indicate that a mistake has been made and for the receiver to delete the last word, send di-di-di-di-di-di-di-dit (eight dots)."
+
+
+</para>
+
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<para id="p1043">
+Consider the following series of musical notes that represent the letter "L".
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1009" display="block">//L ._..
+1,C4
+3,C4
+1,C4
+1,C4
+3,X
+</code>
+
+
+
+
+<para id="p1044">
+As you can see, the Morse code for this letter has four components, one dot followed by one dash followed by two dots. Thus, there are four musical notes followed by a pause indicated by the "X".
+
+
+</para>
+
+
+
+
+
+<para id="p1045">
+The number 1 means to hold the sound of the musical note for one unit in time. The number 3 means to hold the sound for three units in time. The "C4" specifies the pitch or frequency to be the same as Middle-C on a piano or 261.63 Hz. The "X" at the end means to maintain silence for three units.
+
+
+</para>
+
+
+
+
+
+<para id="p1046">
+By taking this approach, it was not necessary for me to deal with the need to maintain one unit of silence between the dots and the dashes. The PPP was designed to make each note distinguishable from the next in a manner similar to the sound that you would hear by pressing a piano key repeatedly.
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h31004">
+<title>
+
+
+
+<emphasis id="OneUnitOfTime" effect="bold">
+
+
+
+
+</emphasis>
+
+One unit of time
+
+
+</title>
+
+
+
+
+<para id="p1047">
+How much time is represented by one unit of time? This depends on the parameters used when the melody file is played by the PPP. The PPP deals with time in terms of the musical concept of 
+
+
+<emphasis id="em1011" effect="italics">
+beats
+
+
+</emphasis>
+. The program allows the user to specify the number of beats per second when playing the melody file. For example, the HELLO WORLD audio file that you downloaded and played 
+
+
+<link id="a1066" target-id="somethingLikeDah">
+
+earlier
+
+
+</link>
+
+ was created at eight beats per second. Without getting into the details of the computation, let me just say that experimentally, a string of 100 "E" characters requires about 50 seconds to play at eight beats per second and about 25 seconds to play at 16 beats per second.
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h31005">
+<title>
+
+
+
+<emphasis id="MorseCodeSpeed" effect="bold">
+
+
+
+
+</emphasis>
+
+Morse code speed
+
+
+</title>
+
+
+
+
+<para id="p1048">
+Morse code speed is normally discussed in terms of words per minute or WPM. However, it is not clear exactly how speed in WPM is measured. Morse code characters have different lengths. Therefore, different words will have different lengths even if they have the same number of letters. The time required to transmit a message will depend on the words used in the message. 
+
+
+</para>
+
+
+
+
+
+<para id="p1049">
+One source that I found indicated that WPM is measured using 
+
+
+<emphasis id="em1012" effect="italics">
+standard
+
+
+</emphasis>
+ five-letter words such as "PARIS" and "CODEX". I have determined experimentally that when the PPP is set to eight beats per second, six occurrences of the word PARIS followed by six occurrence of the word CODEX require almost exactly one minute to play. This suggests that a PPP rate of eight beats per second produces a Morse code rate of about twelve WPM. 
+
+
+<emphasis id="em1013" effect="italics">
+(There were no spaces between the words.)
+
+
+</emphasis>
+ This further suggests that clicking 
+
+
+<link id="a1067" url="HelloWorld.au">
+
+here
+
+
+</link>
+
+ will allow you to download and listen to Morse code at about 12 WPM. 
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h31006">
+<title>
+
+
+
+<emphasis id="ChangingTheCodeSpeed" effect="bold">
+
+
+
+
+</emphasis>
+
+Changing the code speed
+
+
+</title>
+
+
+
+
+<para id="p1050">
+With this approach, the playback speed in WPM for a given message can be changed by changing the "beats per second" parameter when playing the output melody file with the PPP. For example, increasing that parameter from eight to sixteen beats per second would double the speed of the HELLO WORLD audio file. If you would like to hear what 24 WPM sounds like, click 
+
+
+<link id="a1068" url="HelloWorld16.au">
+
+here
+
+
+</link>
+
+ to download and play an audio file of the same message at twice the speed of the 
+
+
+<link id="a1069" target-id="somethingLikeDah">
+
+earlier
+
+
+</link>
+
+ version.
+
+
+</para>
+
+
+
+
+
+</section>
+</section>
+<section id="h21011">
+<title>
+
+
+
+<emphasis id="InsertSilenceBetweenCharacters" effect="bold">
+
+
+
+
+</emphasis>
+
+Insert silence between characters
+
+
+</title>
+
+
+
+
+<para id="p1051">
+The code in 
+
+<link id="a1070" target-id="Listing_7">
+
+ Listing 7
+
+</link>
+
+ inserts silence for three units of time between message characters. That code also signals the end of the 
+
+
+<emphasis id="strong1014" effect="bold">
+for
+
+
+</emphasis>
+ loop and the end of the 
+
+
+<emphasis id="strong1015" effect="bold">
+run
+
+
+</emphasis>
+ method.
+
+
+</para>
+
+
+
+
+
+<note id="note1009" type="">
+
+
+
+
+
+<para id="p1052">
+
+
+
+<emphasis id="Listing_7" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 7. Insert silence between characters.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1010" display="block">
+        System.out.println("3,X");
+      }//end if on newline
+
+    }//end for loop
+
+  }//end run
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+<section id="h21012">
+<title>
+
+
+
+<emphasis id="WritingTheOutputFile" effect="bold">
+
+
+
+
+</emphasis>
+
+Writing the output file
+
+
+</title>
+
+
+
+
+<para id="p1053">
+By now, you may be wondering why I used the following Java code to write the output melody file.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1011" display="block">System.out.println
+</code>
+
+
+
+
+<para id="p1054">
+The answer is simply that I did it because it is an easy way to write an output text file containing multiple lines of text. This involves something called 
+
+
+<emphasis id="em1014" effect="italics">
+output redirection
+
+
+</emphasis>
+. If you are not familiar with that term, you may want to Google it.
+
+
+</para>
+
+
+
+
+
+<para id="p1055">
+<link id="a1071" target-id="Listing_8">
+
+ Listing 8
+
+</link>
+
+ contains a Windows batch file that I use to run the program named 
+
+
+<emphasis id="strong1016" effect="bold">
+MorseCodeGenerator01
+
+
+</emphasis>
+.
+
+
+</para>
+
+
+
+
+
+<note id="note1010" type="">
+
+
+
+
+
+<para id="p1056">
+
+
+
+<emphasis id="Listing_8" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 8. Writing the output file.
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1012" display="block">
+echo off
+del *.class
+del output.txt
+javac MorseCodeGenerator01.java
+java MorseCodeGenerator01 HelloWorld.txt &gt; MorseCodeOutput.txt
+pause
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<para id="p1057">
+With one possible exception, everything in this batch file should be familiar to you. 
+
+
+</para>
+
+
+
+
+
+<para id="p1058">
+The file named 
+
+
+<emphasis id="strong1017" effect="bold">
+HelloWorld.txt
+
+
+</emphasis>
+ is the file containing the message that is to be translated into Morse code. The file named 
+
+
+<emphasis id="strong1018" effect="bold">
+MorseCodeOutput.txt
+
+
+</emphasis>
+ is the name of the output file that will contain the melody. Here is the possible exception mentioned above. The "greater than" angle bracket immediately to the left of the output file name instructs the operating system to route all output produced through execution of 
+
+
+<emphasis id="strong1019" effect="bold">
+System.out.println
+
+
+</emphasis>
+ statements in the program to a file with the given name.
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h21013">
+<title>
+
+
+
+<emphasis id="ReadingTheInputFile" effect="bold">
+
+
+
+
+</emphasis>
+
+Reading the input file
+
+
+</title>
+
+
+
+
+<para id="p1059">
+A method named 
+
+
+<emphasis id="strong1020" effect="bold">
+readInputFile
+
+
+</emphasis>
+ is used to read the text message that is to be translated into Morse code. There is nothing unique about that method so I won't discuss it further. You can view the method in its entirety in 
+
+<link id="a1072" target-id="Listing_9">
+
+ Listing 9
+
+</link>
+
+.
+
+
+</para>
+
+
+
+
+
+</section>
+</section>
+<section id="h11004">
+<title>
+
+
+
+<emphasis id="RunTheProgram" effect="bold">
+
+
+
+
+</emphasis>
+
+Run the program
+
+
+</title>
+
+
+
+
+<para id="p1060">
+I encourage you to copy the code from 
+
+<link id="a1073" target-id="Listing_9">
+
+ Listing 9
+
+</link>
+
+. Create a text message for translation into Morse code. Compile and execute the program using your message file and a batch file similar to the one shown in 
+
+<link id="a1074" target-id="Listing_8">
+
+ Listing 8
+
+</link>
+
+. Then go to 
+
+
+<link id="a1075" url="http://cnx.org/contents/27YG7QNc:2Qg_6aDU">
+
+Jbs2060-A Player Piano Simulator
+
+
+</link>
+
+ and follow the instructions to play your Morse code melody file using the PPP. 
+
+
+</para>
+
+
+
+
+
+<para id="p1061">
+Experiment with the code, making changes, and observing the results of your changes. Make certain that you can explain why your changes behave as they do. For example, you might want to replace the output redirection with the use of a method to write the output file.
+
+
+</para>
+
+
+
+
+
+<para id="p1062">
+Your smart phone probably has a built-in stop watch. Create a text file containing a large number 
+
+
+<emphasis id="em1015" effect="italics">
+(possibly 100)
+
+
+</emphasis>
+ five-character groups of random letters and numbers. Think of each group as a "word." Translate the message and create the melody file. Use your timer to measure the amount of time required to play the melody file. Use that information to calculate the speed in WPM. Change the beats per second on playback and play it a few more times. Draw a graph showing the speed in WPM versus beats per second on playback.
+
+
+</para>
+
+
+
+
+
+</section>
+<section id="h11005">
+<title>
+
+
+
+<emphasis id="CompleteProgramListing" effect="bold">
+
+
+
+
+</emphasis>
+
+Complete program listing
+
+
+</title>
+
+
+
+
+<para id="p1063">
+A complete listing of the program named 
+
+
+<emphasis id="strong1021" effect="bold">
+MorseCodeGenerator01
+
+
+</emphasis>
+ is shown in 
+
+<link id="a1076" target-id="Listing_9">
+
+ Listing 9
+
+</link>
+
+ below.
+
+
+</para>
+
+
+
+
+
+<note id="note1011" type="">
+
+
+
+
+
+<para id="p1064">
+
+
+
+<emphasis id="Listing_9" effect="bold">
+
+
+
+
+</emphasis>
+
+Listing 9. The program named MorseCodeGenerator01
+
+
+</para>
+
+
+
+
+
+<para id="p1065">
+
+
+
+</para>
+
+
+
+
+
+
+<code id="pre1013" display="block">/*File MorseCodeGenerator01.java
+Copyright 2016 R.G.Baldwin
+
+04/28/16
+Reads a text file and generates an output file
+containing musical notes representing Morse code
+for the characters in the text file. Supports
+letters, numbers, and the space character.
+Generates an error code ........ for each
+unsupported character in the input text file.
+
+Must use output redirection to create the output
+file as in the following:
+
+java MorseCodeGenerator01 in.txt &gt; out.txt
+
+The output text file must then be moved to the
+Music folder to be compatible with the
+MusicComposer09.java program.
+************************************************/
+
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.util.*;
+
+public class MorseCodeGenerator01{
+  public static void main(String[] args){
+    run(args[0]);
+  }//end main
+
+  static void run(String inputFile){
+    //Read the input data
+    String data = readInputFile(inputFile);
+
+    //Create a hash table containing the codes
+    // for letters, numbers, the space character,
+    // and an error character.
+    Hashtable &lt;String,String&gt;codes =
+                  new Hashtable&lt;String,String&gt;();
+
+    codes.put(" ","x");//space character
+    codes.put("A","._");
+    codes.put("B","_...");
+    codes.put("C","_._.");
+    codes.put("D","_..");
+    codes.put("E",".");
+    codes.put("F",".._.");
+    codes.put("G","__.");
+    codes.put("H","....");
+    codes.put("I","..");
+    codes.put("J",".___");
+    codes.put("K","_._");
+    codes.put("L","._..");
+    codes.put("M","__");
+    codes.put("N","_.");
+    codes.put("O","___");
+    codes.put("P",".__.");
+    codes.put("Q","__._");
+    codes.put("R","._.");
+    codes.put("S","...");
+    codes.put("T","_");
+    codes.put("U",".._");
+    codes.put("V","..._");
+    codes.put("W",".__");
+    codes.put("X","_.._");
+    codes.put("Y","_.__");
+    codes.put("Z","__..");
+    codes.put("1",".____");
+    codes.put("2","..___");
+    codes.put("3","...__");
+    codes.put("4","...._");
+    codes.put("5",".....");
+    codes.put("6","_....");
+    codes.put("7","__...");
+    codes.put("8","___..");
+    codes.put("9","____.");
+    codes.put("0","_____");
+    codes.put("error","........");
+
+    String ch = "";
+    String code = "";
+    String sound = "";
+    for(int cnt = 0;cnt &lt; data.length();cnt++){
+
+      //Ignore newline characters.
+      if(!(("" + data.charAt(cnt)).equals(
+                                         "\n"))){
+        //Convert all input characters to upper
+        // case.
+        ch = ("" + data.charAt(cnt)).
+                                   toUpperCase();
+        //Get the code for the input character
+        code = codes.get(ch);
+
+        //If the input character is not in the
+        // hashtable, transmit an error.
+        if(code == null){
+          code = codes.get("error");
+        }//end if
+
+        //Display the character and the code in
+        // the output file.
+        //An x in the output file indicates a
+        // space in the input text stream.
+        System.out.println("//" + ch + " " +
+                                           code);
+
+        //Convert the code to musical notes that
+        // represent Morse code for the character
+        // when the file is played using the
+        // PlayerPiano01 program.
+        for(int ctr = 0; ctr &lt; code.length();
+                                          ctr++){
+          sound = "" + code.charAt(ctr);
+          if(sound.equals(".")){
+            System.out.println("1,C4");
+          }else if(sound.equals("_")){
+            System.out.println("3,C4");
+          }else if(sound.equals("x")){
+            System.out.println("3,X");
+          }//end else if
+        }//end for loop
+        //Insert a short silence between
+        // characters.
+        System.out.println("3,X");
+      }//end if on newline
+
+    }//end for loop
+
+  }//end run
+  //-------------------------------------------//
+
+  //This method is used to read the input file
+  // containing the message that is to be
+  // translated to Morse code.
+  static String readInputFile(String inputFile){
+    String pathAndFileName = inputFile;
+
+    String output = "";
+    String line = "";
+    try{
+      FileReader fileReader =
+                 new FileReader(pathAndFileName);
+      BufferedReader bufferedReader =
+                  new BufferedReader(fileReader);
+      while((line =
+             bufferedReader.readLine()) != null){
+        output += line + "\n";
+      }//end while loop
+      fileReader.close();
+
+    }catch (Exception e) {
+      e.printStackTrace();
+    }//end catch
+    return output;
+
+  }//end readInputFile
+  //-------------------------------------------//
+}//end class MorseCodeGenerator01
+//=============================================//
+
+</code>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+<section id="h11006">
+<title>
+
+
+
+<emphasis id="Miscellaneous" effect="bold">
+
+
+
+
+</emphasis>
+
+Miscellaneous
+
+
+</title>
+
+
+
+
+<para id="p1066">
+This section contains a variety of miscellaneous information.
+
+
+</para>
+
+
+
+
+
+<note id="note1012" type="">
+
+
+
+
+
+<para id="p1067">
+
+
+
+<emphasis id="strong1022" effect="bold">
+Housekeeping material 
+
+
+</emphasis>
+
+
+
+</para>
+
+
+
+
+
+<list id="ul1009" list-type="bulleted">
+
+
+
+<item id="li1038">
+Module name: Morse1010 Translating Text to Morse Code 
+
+
+</item>
+
+
+
+
+<item id="li1039">
+File: Morse1010.odt 
+
+
+</item>
+
+
+
+
+<item id="li1040">
+Published: 04/29/16
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<note id="note1013" type="">
+
+
+
+
+
+<para id="p1068">
+
+
+
+<emphasis id="strong1023" effect="bold">
+Disclaimers: 
+
+
+</emphasis>
+
+
+
+</para>
+
+
+
+
+
+<para id="p1069">
+Although the OpenStax site makes it possible for you to download a PDF file for this module at no charge, and also makes it possible for you to purchase a pre-printed version of the PDF file, you should be aware that some of the HTML elements in this module may not translate well into PDF. 
+
+
+</para>
+
+
+
+
+
+<para id="p1070">
+I also want you to know that, I receive no financial compensation from the OpenStax website even if you purchase the PDF version of the module. 
+
+
+</para>
+
+
+
+
+
+<para id="p1071">
+In the past, unknown individuals have copied my modules from OpenStax, converted them to Kindle books, and placed them for sale on Amazon.com showing me as the author. I neither receive compensation for those sales nor do I know who does receive compensation. If you purchase such a book, please be aware that it is a copy of a module that is freely available on OpenStax and that it was made and published without my prior knowledge.
+
+
+</para>
+
+
+
+
+
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<para id="p1072">
+-end-
+
+
+</para>
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>
