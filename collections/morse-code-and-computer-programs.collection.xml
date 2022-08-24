@@ -1,12 +1,13 @@
-<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+<?xml version="1.0"?>
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en" authors="Richard Baldwin">
   <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
     <md:content-id>col11997</md:content-id>
     <md:title>Morse Code and Computer Programs</md:title>
     <md:language>en</md:language>
     <md:license url="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</md:license>
     <md:uuid>cd65982a-f182-4327-882d-6e44ab45e6a8</md:uuid>
-<md:slug>morse-code-and-computer-programs</md:slug>
-</metadata>
+    <md:slug>morse-code-and-computer-programs</md:slug>
+  </metadata>
   <col:content>
     <col:module document="m60488"/>
     <col:module document="m60489"/>
